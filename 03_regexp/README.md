@@ -35,3 +35,7 @@
 |\n, \t, etc.	|Matches newlines, carriage returns, tabs, etc.
 |\Q	            |Escape (quote) all characters up to \E.
 |\E	            |Ends quoting begun with \Q.
+
+####Resources
+1. [Regexp online](https://regex101.com)
+2. [Жадность и ленивость](https://learn.javascript.ru/regexp-greedy-and-lazy)
