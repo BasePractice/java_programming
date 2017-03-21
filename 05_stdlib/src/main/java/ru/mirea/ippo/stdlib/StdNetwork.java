@@ -3,7 +3,7 @@ package ru.mirea.ippo.stdlib;
 import com.google.common.io.ByteStreams;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -37,8 +37,10 @@ public final class StdNetwork {
         private void process(Socket socket) throws IOException {
             System.out.println("Connected: " + socket.getRemoteSocketAddress());
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-            System.out.println(new String(
-                    ByteStreams.toByteArray(socket.getInputStream()), "UTF-8"));
+            InputStream stream = socket.getInputStream();
+            byte[] buffer = new byte[4];
+            int ret = stream.read(buffer);
+            System.out.println(new String(buffer, 0, ret, "UTF-8"));
             writer.print("PONG");
             writer.flush();
         }
@@ -56,7 +58,6 @@ public final class StdNetwork {
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 writer.print("PING");
                 writer.flush();
-                socket.shutdownOutput();//FIXME: Wat?
                 System.out.println(new String(
                         ByteStreams.toByteArray(socket.getInputStream()), "UTF-8"));
                 socket.close();
