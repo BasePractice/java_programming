@@ -56,7 +56,7 @@ public final class StdNetwork {
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 writer.print("PING");
                 writer.flush();
-                socket.shutdownOutput();//?
+                socket.shutdownOutput();//FIXME: Wat?
                 System.out.println(new String(
                         ByteStreams.toByteArray(socket.getInputStream()), "UTF-8"));
                 socket.close();

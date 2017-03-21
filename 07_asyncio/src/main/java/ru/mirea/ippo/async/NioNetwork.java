@@ -1,4 +1,4 @@
-package ru.mirea.ippo.stdlib.nio;
+package ru.mirea.ippo.async;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

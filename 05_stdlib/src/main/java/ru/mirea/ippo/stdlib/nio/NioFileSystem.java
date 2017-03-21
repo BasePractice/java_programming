@@ -1,5 +1,7 @@
 package ru.mirea.ippo.stdlib.nio;
 
+import ru.mirea.ippo.startup.OsSpecific;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.concurrent.CountDownLatch;
@@ -69,6 +71,7 @@ public final class NioFileSystem {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        OsSpecific specific = new OsSpecific();
         Path path = Paths.get("05_stdlib/tmp");
         path = path.toAbsolutePath();
 
@@ -78,13 +81,13 @@ public final class NioFileSystem {
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.submit(new Watcher(path));
         START.await();
-        Thread.sleep(1000);
+        specific.fsWaitIfNeeded(1000);
         Path resolve = path.resolve(TEMPORARY_TXT);
         Files.deleteIfExists(resolve);
-        Thread.sleep(1000);
+        specific.fsWaitIfNeeded(1000);
         resolve = Files.createFile(resolve);
         Files.write(resolve, "Maine signal".getBytes("UTF-8"));
-        Thread.sleep(10000);
+        specific.fsWaitIfNeeded(10000);
         Files.deleteIfExists(resolve);
         service.shutdown();
     }

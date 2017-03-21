@@ -12,6 +12,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>ru.mirea.ippo</groupId>
+            <artifactId>00_startup</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
