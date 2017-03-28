@@ -1,5 +1,7 @@
 #### Resources
 [Справочник по синхронизаторам java.util.concurrent.*](https://habrahabr.ru/post/277669/)
+[ForkJoinPool](https://shipilev.net/talks/jeeconf-May2012-forkjoin.pdf)
+[ForkJoinPool video](https://www.youtube.com/watch?v=t0dGLFtRR9c)
 ####Задание
 #####Написать crawler
 1. В заданное настройками время запускаться и оканчивать работу. 
