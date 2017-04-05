@@ -26,7 +26,7 @@ public final class NetworkStream {
         }
     }
 
-    private static String contentStream(URLConnection connection, InputStream stream) throws IOException {
+    public static String contentStream(URLConnection connection, InputStream stream) throws IOException {
         String charsetName = DEFAULT_CONTENT_ENCODING;
         Matcher matcher = PATTERN.matcher(connection.getContentType());
         if (matcher.find()) {

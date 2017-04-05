@@ -12,6 +12,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>ru.mirea.ippo</groupId>
+            <artifactId>04_stream</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
