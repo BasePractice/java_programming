@@ -17,7 +17,6 @@ import java.util.List;
 
 public final class StaxDeserializer {
 
-
     public static void main(String[] args) throws TransformerException, ParserConfigurationException, XMLStreamException {
         Document document = DomSerializer.createDocument();
         String xml = DomSerializer.toString(document.getDocumentElement());
@@ -40,7 +39,6 @@ public final class StaxDeserializer {
                     event = reader.nextEvent();
                     property.setValue(event.asCharacters().getData());
                 }
-
             } else if (event.isEndElement()) {
                 EndElement endElement = event.asEndElement();
                 if (endElement.getName().getLocalPart().equals("Property") && property != null) {

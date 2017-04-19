@@ -16,19 +16,20 @@ public final class JsonPropertyMarshal {
         StringWriter out = new StringWriter();
         JsonWriter writer = new JsonWriter(out);
         writer.beginObject();
-
         writer.name("properties")
                 .beginArray()
-                .beginObject()
-                .name("key").value("Key1")
-                .name("value").value("Value1")
-                .endObject()
+                    .beginObject()
+                        .name("key").value("Key1")
+                        .name("value").value("Value1")
+                    .endObject()
+                    .beginObject()
+                        .name("key").value("Key2")
+                        .name("value").value("Value2")
+                    .endObject()
                 .endArray();
-
         writer.endObject();
         return out.toString();
     }
-
 
     public static void main(String[] args) throws IOException {
         List<Property> properties = new LinkedList<>();

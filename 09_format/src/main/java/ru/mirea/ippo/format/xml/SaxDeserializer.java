@@ -16,10 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public final class SaxDeserializer extends DefaultHandler {
-
     private final List<Property> properties = new LinkedList<>();
     private String thisElement;
-
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {

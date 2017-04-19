@@ -15,7 +15,7 @@ public final class JaxbSerializer {
         property.setValue("Value1");
         properties.getProperty().add(property);
         File file = new File("properties.xml");
-//        file.deleteOnExit();
+        file.deleteOnExit();
         JAXB.marshal(properties, file);
         Properties unmarshal = JAXB.unmarshal(file, Properties.class);
         Property property1 = unmarshal.getProperty().get(0);

@@ -14,6 +14,7 @@ import java.util.List;
 
 public final class JsonObjectMarshal {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
     static final class Property {
         @SerializedName("key")
         String key;
@@ -25,7 +26,7 @@ public final class JsonObjectMarshal {
         List<Property> properties = new LinkedList<>();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NoSuchFieldException {
         String json = createJson();
         Files.write(Paths.get("properties.json"), json.getBytes("UTF-8"));
         File file = new File("properties.json");
@@ -35,7 +36,7 @@ public final class JsonObjectMarshal {
         assert parsed.properties.get(0).value.equals("Value1");
     }
 
-    static String createJson() {
+    private static String createJson() {
         Property property = new Property();
         property.key = "Key1";
         property.value = "Value1";

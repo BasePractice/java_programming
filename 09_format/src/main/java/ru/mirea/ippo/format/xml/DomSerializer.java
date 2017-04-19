@@ -25,7 +25,7 @@ public final class DomSerializer {
     private static final String NS = "urn://ru-mirea-ippo-format/versions/1.0.0";
     private static final DocumentBuilderFactory FACTORY = DocumentBuilderFactory.newInstance();
 
-    public static Document createDocument() throws ParserConfigurationException {
+    static Document createDocument() throws ParserConfigurationException {
         DocumentBuilder builder = FACTORY.newDocumentBuilder();
         Document document = builder.newDocument();
 
@@ -65,7 +65,7 @@ public final class DomSerializer {
         return property;
     }
 
-    public static String toString(Element element) throws TransformerException {
+    static String toString(Element element) throws TransformerException {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         StreamResult result = new StreamResult(new StringWriter());
