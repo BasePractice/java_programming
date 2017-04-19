@@ -15,3 +15,5 @@ target
 hs_err_pid*
 05_stdlib/tmp
 w.txt
+properties.json
+properties.xml

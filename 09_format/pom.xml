@@ -10,7 +10,57 @@
     </parent>
     <artifactId>09_format</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <target>2.1</target>
+                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <sources>
+                                <source>src/main/resources/property.xsd</source>
+                            </sources>
+                            <packageName>ru.mirea.ippo.format</packageName>
+                            <arguments>
+                                <argument>-Xinheritance</argument>
+                                <argument>-Xinject-code</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics</artifactId>
+                        <version>0.11.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-runtime</artifactId>
+                        <version>0.11.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-tools</artifactId>
+                        <version>0.11.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

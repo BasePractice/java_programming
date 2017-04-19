@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
+          xmlns:tns="urn://ru-mirea-ippo-format/versions/1.0.0"
+          targetNamespace="urn://ru-mirea-ippo-format/versions/1.0.0"
+          elementFormDefault="qualified">
+    <s:complexType name="Property">
+        <s:sequence>
+            <s:element name="Key" type="s:string" minOccurs="1" maxOccurs="1">
+                <s:annotation>
+                    <s:documentation>
+                        Имя, обязательное поле
+                    </s:documentation>
+                </s:annotation>
+            </s:element>
+            <s:element name="Value" type="s:string" minOccurs="1" maxOccurs="1">
+                <s:annotation>
+                    <s:documentation>
+                        Значение
+                    </s:documentation>
+                </s:annotation>
+            </s:element>
+        </s:sequence>
+    </s:complexType>
+
+    <s:complexType name="Properties">
+        <s:sequence>
+            <s:element name="Property" type="tns:Property" minOccurs="0" maxOccurs="unbounded"/>
+        </s:sequence>
+    </s:complexType>
+</s:schema>
