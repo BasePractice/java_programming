@@ -14,6 +14,9 @@
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.21</slf4j.version>
         <maven.version>3.0.1</maven.version>
+        <reseasy.version>3.0.10.Final</reseasy.version>
+        <jetty.version>9.3.13.v20161014</jetty.version>
+        <jackson.version>2.4.1</jackson.version>
     </properties>
 
 

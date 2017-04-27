@@ -1,0 +1,85 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC
+        "-//Mort Bay Consulting//DTD Configure//EN"
+        "http://www.eclipse.org/jetty/configure_9_0.dtd">
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+    <Get name="ThreadPool">
+        <Set name="minThreads" type="int">16</Set>
+        <Set name="maxThreads" type="int">500</Set>
+    </Get>
+
+    <Call name="addConnector">
+        <Arg>
+            <New class="org.eclipse.jetty.server.ServerConnector">
+                <Arg name="server">
+                    <Ref refid="Server"/>
+                </Arg>
+                <Arg name="factories">
+                    <Array type="org.eclipse.jetty.server.ConnectionFactory">
+                        <Item>
+                            <New class="org.eclipse.jetty.server.HttpConnectionFactory">
+                            </New>
+                        </Item>
+                    </Array>
+                </Arg>
+                <Set name="idleTimeout">10000</Set>
+                <Set name="acceptQueueSize">9999</Set>
+                <Set name="idleTimeout">30000</Set>
+
+                <Set name="port">
+                    <Property name="jetty.port" default="9090"/>
+                </Set>
+            </New>
+        </Arg>
+    </Call>
+    <Call name="setHandler">
+        <Arg>
+            <New class="org.eclipse.jetty.webapp.WebAppContext">
+                <Set name="war">10_web.war</Set>
+                <Set name="contextPath">/</Set>
+                <Set name="parentLoaderPriority">true</Set>
+
+                <Array id="plusConfig" type="java.lang.String">
+                    <Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
+                    <Item>org.eclipse.jetty.webapp.WebXmlConfiguration</Item>
+                    <Item>org.eclipse.jetty.webapp.MetaInfConfiguration</Item>
+                    <Item>org.eclipse.jetty.webapp.FragmentConfiguration</Item>
+                    <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+                    <Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>
+                    <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+                    <Item>org.eclipse.jetty.annotations.AnnotationConfiguration</Item>
+                </Array>
+                <Set name="configurationClasses">
+                    <Ref refid="plusConfig"/>
+                </Set>
+                <New id="SimpleDataSource" class="org.eclipse.jetty.plus.jndi.Resource">
+                    <Arg>jboss/datasources/SimpleDataSource</Arg>
+                    <Arg>
+                        <New class="com.zaxxer.hikari.HikariDataSource">
+                            <Arg>
+                                <New id="StubDataSourceConfig" class="com.zaxxer.hikari.HikariConfig">
+                                    <Set name="JdbcUrl">jdbc:h2:mem:stub;DB_CLOSE_DELAY=-1;MODE=PostgreSQL</Set>
+                                    <Call name="addDataSourceProperty">
+                                        <Arg>cachePrepStmts</Arg>
+                                        <Arg>true</Arg>
+                                    </Call>
+                                    <Call name="addDataSourceProperty">
+                                        <Arg>prepStmtCacheSize</Arg>
+                                        <Arg>250</Arg>
+                                    </Call>
+                                    <Call name="addDataSourceProperty">
+                                        <Arg>prepStmtCacheSqlLimit</Arg>
+                                        <Arg>2048</Arg>
+                                    </Call>
+                                </New>
+                            </Arg>
+                        </New>
+                    </Arg>
+                </New>
+            </New>
+        </Arg>
+    </Call>
+</Configure>
+
